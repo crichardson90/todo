@@ -1,12 +1,14 @@
 <h1 id="heading">All my tasks:</h1>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li class="task <%= 'finished' if task.finished? %>" id="<%= task.id %>"><%= task.name %></li>
-  <% end %>
-</ul>
+<div id="app">
+  <transition-group name="slide-fade" tag="ul">
+    <li v-for="task in tasks" v-on:click="finishedToggle(task)" v-bind:class="{finished: task.finished}" v-bind:key="task,id" v-if="showFinished || !task.finished">
+      {{ task.name }}
+    </li>
+</transition-group>
+  
 
-<input type="text" id="new-task-input" placeholder="Enter new task">
-<button id="new-task-button">Add new task</button>
-
-<button id="orange-button">Make Tasks Orange</button> 
+  <input type="text" v-model="newTaskText" placeholder="Enter Task">
+  <button v-on:click="addTask">Add new task</button>
+  <button v-on:click="showFinished = !showFinished">Show/Hide Finished Tasks</button>
+</div>

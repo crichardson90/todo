@@ -1,6 +1,11 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
+
+    respond_to do |format|
+      format.html {render 'index'}
+      format.json {render json: @tasks, status: 200}
+    end
   end
 
   def create
