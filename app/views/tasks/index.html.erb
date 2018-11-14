@@ -1,0 +1,12 @@
+<h1 id="heading">All my tasks:</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li class="task <%= 'finished' if task.finished? %>" id="<%= task.id %>"><%= task.name %></li>
+  <% end %>
+</ul>
+
+<input type="text" id="new-task-input" placeholder="Enter new task">
+<button id="new-task-button">Add new task</button>
+
+<button id="orange-button">Make Tasks Orange</button> 
